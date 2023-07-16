@@ -15,7 +15,23 @@ class CourseSorter:
 
         self.passed_courses = []
 
-    
+    def get_courses(self, semester):
+        if semester == 1:
+            return self.suggested_lessons[semester]
+
+        if semester > 1:
+            previous_semester = semester - 1
+            conditional = input(f"Was the previous semester (semester {previous_semester}) conditional? (y/no): ")
+            if conditional.lower() == "y":
+                max_courses = 14
+            else:
+                score = float(input("What was your score in the previous semester? "))
+                if score >= 16:
+                    max_courses = 24
+                elif score >= 12:
+                    max_courses = 20
+                else:
+                    max_courses = 0
 
             
             
