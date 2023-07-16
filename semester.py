@@ -33,7 +33,24 @@ class CourseSorter:
                 else:
                     max_courses = 0
 
-            
+            max_unit = max_courses - len(self.passed_courses)
+
+            for prev_semester in range(1, semester):
+                for course_units in self.suggested_lessons[prev_semester]:
+                    course = course_units[0]
+                    units = course_units[1]
+                    passed = input(f"Did you pass the course '{course}'? (y/no): ")
+                    if passed.lower() == "y":
+                        self.passed_courses.append(course)
+                    else:
+                        self.suggested_lessons[semester].append((course, units))
+
+            suggested_courses = self.suggested_lessons[semester]
+            remaining_suggested_courses = [(course, units) for course, units in suggested_courses if course not in self.passed_courses]
+            print("---------------------------------")
+            print(f" you passed this lesson {self.passed_courses}")
+            print("---------------------------------------")
+            return remaining_suggested_courses[:max_unit] 
             
         
 
