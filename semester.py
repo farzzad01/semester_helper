@@ -55,5 +55,19 @@ class CourseSorter:
         
 
 
+Sorter = CourseSorter()
+current_semester = int(input("Which semester are you currently in? "))
+
+if current_semester == 1:
+    courses = Sorter.get_courses(current_semester)
+    print("Your courses for the first semester are:")
+    for course, units in courses:
+        print(f"{course} ({units} units)")
+else:
+    courses = Sorter.get_courses(current_semester)
+    print("Suggested courses for this semester:")
+    print("--------------------------------------")
+    for course, units in courses:
+        print(f"{course} ({units} units)")
     
         
